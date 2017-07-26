@@ -16,5 +16,12 @@ namespace AppVeyorPlayground
         {
             Assert.True(false);
         }
+
+        [Fact]
+        public void MessageTest()
+        {
+            var a = new AppVeyorApi();
+            a.Message1("test");
+        }
     }
 }
