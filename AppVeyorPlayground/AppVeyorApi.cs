@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Diagnostics;
+using System.Net.Http;
 
 namespace AppVeyorPlayground
 {
@@ -17,8 +18,13 @@ namespace AppVeyorPlayground
             }
             else
             {
-                string cmd = string.Format("appveyor AddMessage \"{0}\"", message);
-                Process.Start(cmd);
+                using (var client = new HttpClient())
+                {
+                    string data =@"{""message"": ""This is a test message"",""category"": ""warning"", ""details"": ""Additional information for the message""}";
+
+                    client.BaseAddress = new Uri(Environment.GetEnvironmentVariable("APPVEYOR_API_URL"));
+                    var response = client.PostAsync("api/build/messages", new StringContent(data)).Result;
+                }
             }
         }
     }
