@@ -5,3 +5,6 @@ branches:
 build_script:
 - cmd: C:\projects\appveyor-playground\build.bat
 test: off
+artifacts:
+- path: readme.md
+  name: README
