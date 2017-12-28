@@ -15,7 +15,7 @@ if ($appveyor){
     {
         # regular CI build, no release
         $shortversion = '0.0.0'
-        $longversion = '0.0.0.CI-' + $env:APPVEYOR_BUILD_NUMBER
+        $longversion = '0.0.0.CI-' + $env:APPVEYOR_BUILD_NUMBER + '.' + $env:APPVEYOR_REPO_COMMIT
     }
 
     appveyor AddMessage $version
