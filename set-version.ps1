@@ -5,7 +5,7 @@ $appveyor = $env:APPVEYOR
 if ($appveyor){
     
     # set version number
-    if ($env:APPVEYOR_REPO_TAG)
+    if ($env:APPVEYOR_REPO_TAG -eq $true)
     {
         # we are building a tag -> we are doing a release -> use the tag as version number
         $version = $env:APPVEYOR_REPO_TAG_NAME + '.' + $env:APPVEYOR_REPO_COMMIT
@@ -23,7 +23,8 @@ if ($appveyor){
 } else {
 
     # TODO
+    $version = 'TODO'
 }
 
-Write-Host 'GithubApiTests_Name: ' $env:GithubApiTests_Name
+Write-Host 'version: ' $version
 Write-Host 'ScmBackupVersion: ' $env:ScmBackupVersion
